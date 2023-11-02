@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-function Home() {
+function Home({ navigation }) {
     const [shops, setShops] = useState([])
 
     useEffect(() => {
@@ -20,8 +20,7 @@ function Home() {
                     )
                 })
             }
-            
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('PickShop')}>
                 <Text style={styles.btnTxt}>GET STARTED</Text>
             </TouchableOpacity>
         </View>

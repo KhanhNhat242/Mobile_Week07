@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-function PickShop() {
+function PickShop({ navigation }) {
     const [shops, setShops] = useState([])
 
     useEffect(() => {
@@ -13,7 +13,9 @@ function PickShop() {
     return ( 
         <View style={styles.wrapper}>
             <View style={styles.headerWrapper}>
-                <Image style={styles.backImg} source={require('../assets/back.png')} />
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Image style={styles.backImg} source={require('../assets/back.png')} />
+                </TouchableOpacity>
                 <Text style={styles.headerTxt}>Shops near me</Text>
                 <Image style={styles.searchImg} source={require('../assets/search.png')} />
             </View>
@@ -21,15 +23,17 @@ function PickShop() {
                 shops.map((s) => {
                     return (
                         <View>
-                            <Image style={styles.shopImg} source={{uri: s.imgLink}} />
-                            <View style={styles.statusWrapper}>
-                                <Text style={styles.status}>{s.statu}</Text>
-                                <Image style={styles.clockImg} source={require('../assets/clock.png')} />
-                                <Text style={styles.time}>{s.time}</Text>
-                                <Image style={styles.addressImg} source={require('../assets/address.png')} />
-                            </View>
-                            <Text style={styles.shopName}>{s.name}</Text>
-                            <Text style={styles.address}>{s.address}</Text>
+                            <TouchableOpacity onPress={() => navigation.navigate('Drinks')}>
+                                <Image style={styles.shopImg} source={{uri: s.imgLink}} />
+                                <View style={styles.statusWrapper}>
+                                    <Text style={styles.status}>{s.statu}</Text>
+                                    <Image style={styles.clockImg} source={require('../assets/clock.png')} />
+                                    <Text style={styles.time}>{s.time}</Text>
+                                    <Image style={styles.addressImg} source={require('../assets/address.png')} />
+                                </View>
+                                <Text style={styles.shopName}>{s.name}</Text>
+                                <Text style={styles.address}>{s.address}</Text>
+                            </TouchableOpacity>
                         </View>
                     )
                 })
